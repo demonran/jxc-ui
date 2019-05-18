@@ -1,5 +1,4 @@
-import axios from '_axios@0.18.0@axios/index'
-
+import axios from 'axios'
 
 // 创建axios实例
 const service = axios.create({
