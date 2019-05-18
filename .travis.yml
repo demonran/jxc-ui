@@ -1,6 +1,6 @@
 language: node.js
-
-install: "npm run build"
+node_js: 7
+install: "npm install && npm run build"
 script:
 
 before_install:
