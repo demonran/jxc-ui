@@ -10,6 +10,5 @@ before_install:
 - chmod 600 ~/.ssh/id_rsa
 addons:
   ssh_known_hosts: 47.106.127.210
-
 after_success:
-  - scp dist/* root@47.106.127.210:/var/www/html
+- scp dist/* root@47.106.127.210:/var/www/html
