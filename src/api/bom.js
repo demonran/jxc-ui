@@ -1,10 +1,11 @@
 import request from '@/utils/request'
 
 export default {
-  list () {
+   list (params) {
     return request({
       url: 'api/bom',
-      method: 'get'
+      method: 'get',
+        params: params
     })
   }
 }
