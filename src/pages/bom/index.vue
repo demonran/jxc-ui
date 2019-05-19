@@ -49,7 +49,7 @@
                     size: this.pageSize
                 }).then(res => {
                     this.boms = res.data.content
-                    this.total = res.data.totalPages
+                    this.total = res.data.totalSize
                 }).catch(() => {
                     this.$message.error('error')
                 })
