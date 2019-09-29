@@ -9,7 +9,7 @@ const service = axios.create({
 
 // response拦截器
 service.interceptors.response.use(res => {
-  return res
+  return res.data
 }, error => Promise.reject(error))
 
 export default service

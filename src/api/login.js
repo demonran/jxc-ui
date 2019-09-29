@@ -1,10 +1,9 @@
 import request from '@/utils/request'
 
-export default {
-    login() {
-        return request({
-            url: 'login',
-            method: 'post'
-        })
-    }
+export function login(){
+    return request({
+        url: 'login',
+        method: 'post'
+    })
 }
+

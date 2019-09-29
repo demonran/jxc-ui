@@ -38,7 +38,7 @@
 </template>
 
 <script>
-// import { encrypt } from '@/utils/rsaEncrypt'
+import { encrypt } from '@/utils/rsaEncrypt'
 // import Config from '@/config'
 import login from '@/api/login'
 // import Cookies from 'js-cookie'
@@ -98,43 +98,32 @@ export default {
     //   }
     // },
     handleLogin() {
-        login.login().then(res => {
-          console.log(res)
-        })
-      // this.$refs.loginForm.validate(valid => {
-      //   const user = {
-      //     username: this.loginForm.username,
-      //     password: this.loginForm.password,
-      //     rememberMe: this.loginForm.rememberMe,
-      //     code: this.loginForm.code,
-      //     uuid: this.loginForm.uuid
-      //   }
+      this.$refs.loginForm.validate(valid => {
+        const user = {
+          username: this.loginForm.username,
+          password: this.loginForm.password,
+          rememberMe: this.loginForm.rememberMe,
+          code: this.loginForm.code,
+          uuid: this.loginForm.uuid
+        }
       //   if (user.password !== this.cookiePass) {
       //     user.password = encrypt(user.password)
       //   }
-      //   if (valid) {
-      //     this.loading = true
-      //     if (user.rememberMe) {
-      //       Cookies.set('username', user.username, { expires: Config.passCookieExpires })
-      //       Cookies.set('password', user.password, { expires: Config.passCookieExpires })
-      //       Cookies.set('rememberMe', user.rememberMe, { expires: Config.passCookieExpires })
-      //     } else {
-      //       Cookies.remove('username')
-      //       Cookies.remove('password')
-      //       Cookies.remove('rememberMe')
-      //     }
-      //     this.$store.dispatch('Login', user).then(() => {
-      //       this.loading = false
-      //       this.$router.push({ path: this.redirect || '/' })
-      //     }).catch(() => {
-      //       this.loading = false
-      //       this.getCode()
-      //     })
-      //   } else {
-      //     console.log('error submit!!')
-      //     return false
-      //   }
-      // })
+        if (valid) {
+          this.loading = true
+            user.password = encrypt(user.password)
+          this.$store.dispatch('Login', user).then(() => {
+            this.loading = false
+            this.$router.push({ path: this.redirect || '/' })
+          }).catch(() => {
+            this.loading = false
+            // this.getCode()
+          })
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }

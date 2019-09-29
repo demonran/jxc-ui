@@ -1,31 +1,18 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import router from './routers'
+import store from '@/store'
 
-import Layout from '@/layout'
+router.beforeEach(((to, from, next) => {
+    console.log(to.path)
+    if(store.getters.token){
+        next()
+    }else {
+        if(to.path.startsWith('/login')) {
+            next()
+        }else {
+            next(`/login?redirect=${to.path}`)
+        }
 
-Vue.use(Router)
-
-const routeMap = [
-    { path: '/login',
-        meta: { title: '登录', noCache: true },
-        component: () => import('@/views/login'),
-        hidden: true
-    },
-    {
-        path: '/',
-        component: Layout,
-        redirect: '/home',
-        children: [
-            {
-                path: 'home',
-                component: () => import('@/views/bom'),
-                name: 'Dashboard',
-                meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-            }
-        ]
     }
-]
+}))
 
-export default new Router({
-  routes: routeMap
-})
+export default router
