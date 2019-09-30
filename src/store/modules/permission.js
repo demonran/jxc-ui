@@ -3,6 +3,7 @@ const permission = {
         routes: [ {
             path: '/',
             redirect: '/home',
+            meta:{title:'首页'},
             children: [
                 {
                     path: 'home',
