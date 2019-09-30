@@ -47,10 +47,6 @@ module.exports = {
                 options: vueLoaderConfig
             },
             {
-                test: /\.scss$/,
-                loaders: ['style', 'css', 'sass']
-            },
-            {
                 test: /\.svg$/,
                 loader: 'svg-sprite-loader',
                 include: [resolve('src/icons')],
